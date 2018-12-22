@@ -1,0 +1,28 @@
+Minimal patch to get chromium to compile with widevine support.
+
+Exactly the same as -r1, but we now need to patch
+ninja to pretty please not terminate our build.
+
+caveat emptor: it's in no way clear that building chromium this
+way is safer, from a security perspective, than whatever Google
+Chrome does.
+
+Upstream appears to be cooking up a code-signing trust-chain
+which may protect users against malicious cdm blobs; I doubt
+we benefit from these using this kludge.  Ideally, someone
+would look into this more carefully than I have ... tbh as
+soon as I got my "stories" back, I pretty much lost interest :)
+
+-gmt
+
+--
+--- a/third_party/widevine/cdm/widevine_cdm_version.h
++++ b/third_party/widevine/cdm/widevine_cdm_version.h
+@@ -10,4 +10,5 @@
+ // If the Widevine CDM is available define the following:
+-//  - WIDEVINE_CDM_VERSION_STRING (with the version of the CDM that's available
+-//    as a string, e.g., "1.0.123.456").
++#define WIDEVINE_CDM_VERSION_STRING "unknown"
++#define WIDEVINE_CDM_AVAILABLE
++
+ 

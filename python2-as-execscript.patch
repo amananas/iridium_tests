@@ -1,0 +1,12 @@
+(Quite dirty) patch tu use python2 as executable for python script calls,
+without using configuration all over the project.
+
+--
+--- a/tools/gn/tools/gn/setup.cc
++++ b/tools/gn/tools/gn/setup.cc
+@@ -666,5 +666,5 @@     build_settings_.set_python_path(python_path.NormalizePathSeparatorsTo('/'));
+ #else
+-    build_settings_.set_python_path(base::FilePath("python"));
++    build_settings_.set_python_path(base::FilePath("python2"));
+ #endif
+   }
